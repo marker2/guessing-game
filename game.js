@@ -1,5 +1,6 @@
 var colorOptions = ["blue", "red", "yellow", "green", "orange", "purple", "white", "black"];	// Possible colors
 var color = "none";
+var favoriteColor = "none";
 var guessFirst = "none";
 var guessAgain = "none";
 var checksOut = true;
@@ -27,7 +28,7 @@ function randomColor() {
 };
 
 // I have to come back to this. It's always showing false, and I don't know why
-function guessChecker() {
+/* function guessChecker() {
 	for(var i = 0; i <= colorOptions.length; i++) {
 		if (colorOptions[i] === guessAgain) {
 			checksOut = true;
@@ -35,16 +36,27 @@ function guessChecker() {
 			checksOut = false;
 		};
 	};
-};
+}; */
 
 function game() {
 	// get the first color pair: computer-selection and user-guess
+	var convergence = false;
+	var firstTry = false;
+	var win = false;
 	randomColor();
-	guessFirst = prompt("Hello. I'm your computer (surprise, I'm sentient!). What color am I thinking of?");
+	favoriteColor = prompt("Hello. I'm your computer (surprise, I'm sentient!). What's your favorite color?");
+	favoriteColor = favoriteColor.toLowerCase();
+	guessFirst = prompt("Really? Well, OK, if you say so. Now guess what color I'm thinking of.")
 	guessFirst = guessFirst.toLowerCase();
 
 	// compare the selections
-	if (guessFirst === color) {
+	if ((guessFirst === color) && (color === favoriteColor)) {
+		!convergence;
+		console.log("Perfect convergence! User favorite color, user guess, and computer selection all match.");
+		alert("OK, OK. I cheated and just used your favorite color, so sue me.");
+		document.getElementById("play").value="Give computer another shot";
+	} else if (guessFirst === color) {
+		!firstTry;
 		console.log("User guessed " + guessFirst + ". It's a match!");
 		alert("Wow. How the heck did you guess that? No matter. You win!");
 	} else {
@@ -58,12 +70,13 @@ function game() {
 			guessAgain = prompt("I'm thinking of a new one. Care to try again?");
 			guessAgain = guessAgain.toLowerCase();
 			randomColor();
-			guessChecker();
+			// guessChecker();
 			tryCount++;
-			if (checksOut === false) {
+			/* if (checksOut === false) {
 				console.log("User guess is invalid.");
 				alert("Hey, that's not even one of colors I listed! You're not taking this seriously.");
-			} else if (guessAgain === color) {
+			} else  */ if (guessAgain === color) {
+				!win;
 				console.log("User guessed " + guessAgain + ". It's a match!");
 				alert("Look at you, you clever human. You got it!")
 			} else {
@@ -73,12 +86,14 @@ function game() {
 		};
 		// a correct guess gets the user out of the while loop, or a 10th wrong guess ends the game
 		if (tryCount < 10) {
-			alert("That was pretty good, but I don't know if you could do it again. Refresh the page to prove me wrong.");
+			alert("That was pretty good, but I don't know if you could do it again. Try again to prove me wrong.");
 			document.getElementById("play").value="Play again";
 		} else {
 			alert("Don't worry, I won't tell the other humans about your terrible guessing skills. You could always redeem yourself with a rematch...");
 			document.getElementById("play").value="Play again";
 		};
-
 	};
+
+	// determine index results
+
 };
