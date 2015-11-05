@@ -18,6 +18,8 @@ alerts generated in response. At a right response, the game ends. At a wrong res
 a new color is selected and the user is encouraged to try again, up to 10 tries. After 
 that, the user is returned to the page with an updated button asking him to try again.
 
+For some fun, enter "milk and eggs" as your first guess.
+
 
 To run
 ========================

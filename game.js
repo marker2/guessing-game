@@ -51,7 +51,14 @@ function game() {
 	guessFirst = guessFirst.toLowerCase();
 
 	// compare the selections
-	if ((guessFirst === color) && (color === favoriteColor)) {
+	if (guessFirst === "milk and eggs") {
+		console.log("User found the joke!");
+		alert("Oh, you want a joke? Great! I've got a good one.");
+		alert('A programmer is going to the grocery store and his wife tells him, "Buy a gallon of milk, and if there are eggs, buy a dozen." So the programmer goes, buys everything, and drives back to his house. Upon arrival, his wife angrily asks him, "Why did you get 13 gallons of milk?" The programmer says, "There were eggs!"');
+		alert("Funny, right? Yeah, I like that one.");
+		alert("Anyway, let's play the game.");
+		document.getElementById("play").value="Play for real";
+	} else if ((guessFirst === color) && (color === favoriteColor)) {
 		convergence = true;
 		console.log("Perfect convergence! User favorite color, user guess, and computer selection all match.");
 		alert("OK, OK. I cheated and just used your favorite color, so sue me.");
@@ -90,6 +97,7 @@ function game() {
 			alert("That was pretty good, but I don't know if you could do it again. Try again to prove me wrong.");
 			document.getElementById("play").value="Play again";
 		} else {
+			lose = true;
 			alert("Don't worry, I won't tell the other humans about your terrible guessing skills. You could always redeem yourself with a rematch...");
 			document.getElementById("play").value="Redeem yourself";
 		};
@@ -102,7 +110,7 @@ function game() {
 		document.getElementById("results").innerHTML = "User WON! " + color.toUpperCase() + " it was. User got it in one try!";
 	} else if (win === true) {
 		document.getElementById("results").innerHTML = "User WON! It took some guessing, but user finally got it with " + color.toUpperCase() + ".";
-	} else {
+	} else if (lose === true) {
 		document.getElementById("results").innerHTML = "User LOST. 10 guesses, and user couldn't get it.";
 	}
 };
