@@ -48,3 +48,10 @@ input:hover {
 	color: #2c95b5;
 	text-align: center;
 }
+
+#results {
+	font-family: Arial;
+	color: white;
+	margin-top: 100px;
+	text-align: center;
+}

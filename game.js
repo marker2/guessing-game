@@ -28,15 +28,16 @@ function randomColor() {
 };
 
 // I have to come back to this. It's always showing false, and I don't know why
-/* function guessChecker() {
-	for(var i = 0; i <= colorOptions.length; i++) {
+function guessChecker() {
+	for(var i = 0; i < colorOptions.length; i++) {
 		if (colorOptions[i] === guessAgain) {
 			checksOut = true;
+			break;
 		} else {
 			checksOut = false;
 		};
 	};
-}; */
+};
 
 function game() {
 	// get the first color pair: computer-selection and user-guess
@@ -51,12 +52,12 @@ function game() {
 
 	// compare the selections
 	if ((guessFirst === color) && (color === favoriteColor)) {
-		!convergence;
+		convergence = true;
 		console.log("Perfect convergence! User favorite color, user guess, and computer selection all match.");
 		alert("OK, OK. I cheated and just used your favorite color, so sue me.");
 		document.getElementById("play").value="Give computer another shot";
 	} else if (guessFirst === color) {
-		!firstTry;
+		firstTry = true;
 		console.log("User guessed " + guessFirst + ". It's a match!");
 		alert("Wow. How the heck did you guess that? No matter. You win!");
 	} else {
@@ -70,13 +71,13 @@ function game() {
 			guessAgain = prompt("I'm thinking of a new one. Care to try again?");
 			guessAgain = guessAgain.toLowerCase();
 			randomColor();
-			// guessChecker();
+			guessChecker();
 			tryCount++;
-			/* if (checksOut === false) {
+			if (checksOut === false) {
 				console.log("User guess is invalid.");
 				alert("Hey, that's not even one of colors I listed! You're not taking this seriously.");
-			} else  */ if (guessAgain === color) {
-				!win;
+			} else if (guessAgain === color) {
+				win = true;
 				console.log("User guessed " + guessAgain + ". It's a match!");
 				alert("Look at you, you clever human. You got it!")
 			} else {
@@ -90,10 +91,18 @@ function game() {
 			document.getElementById("play").value="Play again";
 		} else {
 			alert("Don't worry, I won't tell the other humans about your terrible guessing skills. You could always redeem yourself with a rematch...");
-			document.getElementById("play").value="Play again";
+			document.getElementById("play").value="Redeem yourself";
 		};
 	};
 
 	// determine index results
-
+	if (convergence === true) {
+		document.getElementById("results").innerHTML = "User WON! Computer admitted to stealing user's favorite color, " + color.toUpperCase() + ".";
+	} else if (firstTry === true) {
+		document.getElementById("results").innerHTML = "User WON! " + color.toUpperCase() + " it was. User got it in one try!";
+	} else if (win === true) {
+		document.getElementById("results").innerHTML = "User WON! It took some guessing, but user finally got it with " + color.toUpperCase() + ".";
+	} else {
+		document.getElementById("results").innerHTML = "User LOST. 10 guesses, and user couldn't get it.";
+	}
 };
