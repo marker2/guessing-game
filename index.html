@@ -3,14 +3,19 @@
 <head>
 	<title>Guess the Color</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<script src="game.js"></script>
 </head>
 
 <body>
 	<div class="box">
 		<h1>Would you like to play a game?</h1>
-		<p>Don't worry, it's not a complicated game. Your computer just wants to prove that it's smarter than you--though we're really not sure how a guessing game proves that.</p>
-		<div id="start"><input id="play" type="button" onclick="game()" value="Sure, let's play" /></div>
-		<div id="results"></div>
+		<p id="instruction">Don't worry, it's not a complicated game. Your computer just wants to prove that it's smarter than you--though we're really not sure how a guessing game proves that.</p>
+		<div id="entryField">
+				<input id="entry" type="text" name="submitText" />
+				<input type="submit" value="Enter" name="submitButton" onclick="roundSelector()" /> 
+		</div>
+		<input id="play" type="button" onclick="gameStart()" value="Sure, let's play" />
+		<input id="replay" type="button" onclick="newGame()" />
 	</div>
+	<div id="results"> </div>
+	<script src="game.js"></script>
 </body>
