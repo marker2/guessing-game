@@ -16,6 +16,7 @@ var entry = document.getElementById("entry");
 var playButton = document.getElementById("play");
 var replayButton = document.getElementById("replay");
 var result = document.getElementById("results");
+var image = document.getElementById("resultImage");
 
 entryField.style.display = "none";
 replayButton.style.display = "none";
@@ -75,8 +76,16 @@ function gameStart() {
 	console.log("gameStart done!");
 }
 
+// here we decide and insert the image that should display with this result
+function getImage() {
+	document.getElementById("box").style = "float: left";
+	document.getElementById("resultImage").style = "float: right;";
+	image.innerHTML = "<h2>I picked " + color + ".</h2><br /><img src='images/" + color + ".jpg' />";
+}
+
 // the first time the user guesses, there are several unique outcomes possible
 function comparisonFirst() {
+	randomColor();
 	if (guessFirst === "milk and eggs") {
 		console.log("User found the joke!");
 		alert("Oh, you want a joke? Great! I've got a good one.");
@@ -91,22 +100,26 @@ function comparisonFirst() {
 		entryField.style.display="none";
 		playButton.value="Give computer another shot";
 		clearField();
+		getImage();
 	} else if (guessFirst === color) {
 		firstTry = true;
 		console.log("User guessed " + guessFirst + ". It's a match!");
 		instruction.innerHTML = "Wow. How the heck did you guess that? No matter. You win!";
 		clearField();
+		getImage();
 	} else if (gameNumber > 1) {
 		console.log("User guessed " + guessFirst + ", but computer chose " + color + ". Not a match.");
 		instruction.innerHTML = "Nope, not it. That's try # " + tryCount + " . I'll pick a new color, and you guess again.";
 		tryCount++;
 		clearField();
+		getImage();
 	} else {
 		// a first wrong guess returns the possible answers, starts counting tries, and generates a new user-guess variable
 		console.log("User guessed " + guessFirst + ", but computer chose " + color + ". Not a match.");
 		instruction.innerHTML = "Hint: I only know white, black, primary, and secondary colors. And... " + guessFirst.toUpperCase() + " isn't what I was thinking of.";
 		tryCount++;
 		clearField();
+		getImage();
 	}
 }
 
@@ -119,6 +132,7 @@ function comparison() {
 	if (checksOut === false) {
 		console.log("User guess is invalid.");
 		instruction.innerHTML = "Hey, that's not even one of colors I listed! You're not taking this seriously.";
+		getImage();
 	} else if (guessAgain === color) {
 		win = true;
 		console.log("User guessed " + guessAgain + ". It's a match!");
@@ -128,9 +142,11 @@ function comparison() {
 		recordGame();
 		replayButton.value="Yes. Yes I did!";
 		replayButton.style.display = "block";
+		getImage();
 	} else {
 		console.log("User guessed " + guessAgain + ", but computer chose " + color + ". Not a match.");
 		instruction.innerHTML = "Sorry, still not the one. That's try # " + tryCount + " . I'll pick a new one, and you can try again.";
+		getImage();
 	}
 }
 

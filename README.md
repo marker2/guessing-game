@@ -6,6 +6,15 @@ Included files
 - index.html
 - game.js
 - stylesheet.css
+- images
+	- black.jpg
+	- blue.jpg
+	- green.jpg
+	- orange.jpg
+	- purple.jpg
+	- red.jpg
+	- white.jpg
+	- yellow.jpg
 
 
 Design
@@ -13,9 +22,9 @@ Design
 
 This is a simple game. The only button on the page initiates a quick javascript game 
 that asks the user to guess the color randomly generated as the "computer's choice." 
-Most interaction happens between strings entered by the user in prompt dialogs and 
-alerts generated in response. At a right response, the game ends. At a wrong response, 
-a new color is selected and the user is encouraged to try again, up to 10 tries. After 
+Most interaction happens between strings entered by the user in entry fields and 
+responses in the DOM. At a right response, the game ends. At a wrong response, a new 
+color is selected and the user is encouraged to try again, up to 10 tries. After 
 that, the user is returned to the page with an updated button asking him to try again.
 
 For some fun, enter "milk and eggs" as your first guess.
